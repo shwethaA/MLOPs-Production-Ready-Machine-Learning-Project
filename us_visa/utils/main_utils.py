@@ -60,7 +60,7 @@ def load_numpy_array_data(file_path: str) -> np.array:
     """
     try:
         with open(file_path, 'rb') as file_obj:
-            return np.load(file_obj)
+            return np.load(file_obj, allow_pickle=True)
     except Exception as e:
         raise USvisaException(e, sys) from e
 
@@ -86,7 +86,7 @@ def drop_columns(df: pd.DataFrame, cols: list) -> pd.DataFrame:
     """
     logging.info("Entered drop_columns methon of utils")
     try:
-        df = df.drop(columns=cols, axis=1)
+        df = df.drop(columns=cols)
         logging.info("Exited the drop_columns method of utils")
         return df
     except Exception as e:
